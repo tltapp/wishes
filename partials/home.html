@@ -8,7 +8,7 @@
     <input type="text" placeholder="Wishes from" ng-model="wishes.name" ng-class="{'validation
 ': validateFlag}" />
     <input type="text" placeholder="Wishes to" ng-model="wishes.toname" ng-class="{'validation
-': validateFlag}" ng-show="wishes.event == 'birthday'" />
+': validateFlag}" ng-show="wishes.event == 'birthday' || wishes.event == 'love'" />
     <button ng-click="create(wishes)">Create</button>
   </div>
 </div>

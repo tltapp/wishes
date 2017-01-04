@@ -24,9 +24,12 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
             templateUrl: "partials/birthday.html",
             controller: "BdayCtrl"
         })
+        .state('love', {
+            url: "/love/:name/:toname",
+            templateUrl: "partials/love.html",
+            controller: "LoveCtrl"
+        })
 }]);
-
-var app = angular.module('app');
 
 app.controller('BdayCtrl', ['$scope', '$stateParams', '$window', '$firebaseArray', function($scope, $stateParams, $window, $firebaseArray) {
     // var audio = new Audio('https://tltapp.github.io/wishes/tune/newyear.mp3');
@@ -53,21 +56,19 @@ app.controller('BdayCtrl', ['$scope', '$stateParams', '$window', '$firebaseArray
             name: $stateParams.name,
             toname: $stateParams.toname
         });
-        console.log($scope.url);
         $window.open($scope.url);
     }
 }]);
 
-var app = angular.module('app');
 app.controller('HomeCtrl', ['$scope', '$state', '$firebaseArray', function($scope, $state, $firebaseArray) {
     var api = new Firebase("https://tlt-apps.firebaseio.com/wishes/users/");
     var fb = $firebaseArray(api);
 
     $scope.title = "Send your wishes";
 
-    $scope.events = ['birthday', 'newyear', 'pongal'];
+    $scope.events = ['birthday', 'love', 'newyear', 'pongal'];
     $scope.wishes = {
-        event: $scope.events[2]
+        event: $scope.events[3]
     };
     $scope.create = function(res) {
         if (res.name == null || res.name == undefined || res.name == "") {
@@ -95,13 +96,43 @@ app.controller('HomeCtrl', ['$scope', '$state', '$firebaseArray', function($scop
                     event: res.event,
                     created: Firebase.ServerValue.TIMESTAMP
                 });
+            } else if (res.event == "love") {
+                $state.go("love", { name: res.name, toname: res.toname });
+                fb.$add({
+                    name: res.name,
+                    toname: res.toname,
+                    event: res.event,
+                    created: Firebase.ServerValue.TIMESTAMP
+                });
             }
         }
 
     }
 }]);
 
-var app = angular.module('app');
+app.controller('LoveCtrl', ['$scope', '$stateParams', '$window', '$firebaseArray', function($scope, $stateParams, $window, $firebaseArray) {
+    var api = new Firebase("https://tlt-apps.firebaseio.com/wishes/share/");
+    var fb = $firebaseArray(api);
+
+    $scope.wishes = {
+        'name': $stateParams.name,
+        'toname': $stateParams.toname,
+        'quotes': 'That’s what it feels like when you touch me. Like millions of tiny universes being born and then dying in the space between your finger and my skin. Sometimes I forget.'
+    };
+
+    $scope.url = "whatsapp://send?text=Hey Honey, I Love You. Just felt to tell you.: https://tltapp.github.io/wishes/%23%21/love/" + $stateParams.name + "/" + $stateParams.toname;
+
+    $scope.shareOnWhatsapp = function() {
+        fb.$add({
+            share: "whatsapp",
+            event: "love",
+            name: $stateParams.name,
+            toname: $stateParams.toname
+        });
+        console.log($scope.url);
+        $window.open($scope.url);
+    }
+}]);
 
 app.controller('NewYearCtrl', ['$scope', '$stateParams', '$window', '$firebaseArray', function($scope, $stateParams, $window, $firebaseArray) {
     // var audio = new Audio('https://tltapp.github.io/wishes/tune/newyear.mp3');
@@ -126,12 +157,9 @@ app.controller('NewYearCtrl', ['$scope', '$stateParams', '$window', '$firebaseAr
             event: "newyear",
             name: $stateParams.name
         });
-        console.log($scope.url);
         $window.open($scope.url);
     }
 }]);
-
-var app = angular.module('app');
 
 app.controller('PongalCtrl', ['$scope', '$stateParams', '$window', '$firebaseArray', function($scope, $stateParams, $window, $firebaseArray) {
     // var audio = new Audio('https://tltapp.github.io/wishes/tune/pongal.mp3');
@@ -156,7 +184,6 @@ app.controller('PongalCtrl', ['$scope', '$stateParams', '$window', '$firebaseArr
             event: "pongal",
             name: $stateParams.name
         });
-        console.log($scope.url);
         $window.open($scope.url);
     }
 }]);
