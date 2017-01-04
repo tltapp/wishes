@@ -1,0 +1,36 @@
+<div class="container-header">
+  <div ng-include="'partials/header.html'"></div>
+</div>
+<div class="container-body">
+  <div class="page newyear">
+    <div class="wisher">{{wishes.name | uppercase}}</div>
+    <div class="wishing">{{wishes.wishing}}</div>
+    <div class="event">{{wishes.event}}</div>
+    <div class="year">{{wishes.year}}</div>
+    <div class="graphics">
+      <div class="plate">
+        <div class="bottle">
+          <div class="cork"></div>
+          <div class="neck"></div>
+          <div class="body">
+            <div class="label"></div>
+            <div class="label-shadow"></div>
+          </div>
+        </div>
+        <div class="glass">
+          <div class="bowl">
+            <div class="wine"></div>
+          </div>
+          <div class="stem"></div>
+          <div class="foot"></div>
+        </div>
+      </div>
+    </div>
+    <div class="quotes">{{wishes.quotes}}
+      <div>- {{wishes.name}}</div>
+    </div>
+  </div>
+</div>
+<div class="container-footer">
+  <div ng-include="'partials/footer.html'"></div>
+</div>

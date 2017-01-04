@@ -1,0 +1,47 @@
+<div class="container-header">
+  <div ng-include="'partials/header.html'"></div>
+</div>
+<div class="container-body">
+  <div class="page pongal">
+    <div class="wisher">{{wishes.name | uppercase}}</div>
+    <div class="wishing">{{wishes.wishing}}</div>
+    <div class="event"><small>Advance</small></div>
+    <div class="event">{{wishes.event}}</div>
+    <div class="year">{{wishes.year}}</div>
+    <div class="graphics">
+      <div class="pottery">
+        <div class="pottery-border"></div>
+        <div class="pottery-border"></div>
+        <div class="pottery-border"></div>
+        <div class="pottery-border"></div>
+        <div class="pottery-top">
+          <div class="pottery-inner">
+            <span class="pottery-bubbles"></span>
+            <span class="pottery-bubbles"></span>
+            <span class="pottery-bubbles"></span>
+            <span class="pottery-bubbles"></span>
+            <span class="pottery-bubbles"></span>
+            <span class="pottery-bubbles"></span>
+            <div>
+              <span class="pongal-overflow"></span>
+              <span class="pongal-overflow"></span>
+              <span class="pongal-overflow"></span>
+              <span class="pongal-overflow"></span>
+              <span class="pongal-overflow"></span>
+              <span class="pongal-overflow"></span>
+            </div>
+          </div>
+        </div>
+        <div class="pottery-stick stick-one"></div>
+        <div class="pottery-stick stick-two"></div>
+        <div class="pottery-stick stick-three"></div>
+      </div>
+    </div>
+    <div class="quotes">{{wishes.quotes}}
+      <div>- {{wishes.name}}</div>
+    </div>
+  </div>
+</div>
+<div class="container-footer">
+  <div ng-include="'partials/footer.html'"></div>
+</div>

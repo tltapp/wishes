@@ -1,0 +1,19 @@
+<div class="container-body">
+  <div class="page home-page">
+    <img src="./img/logo.png" class="logo" />
+    <h2>{{title}}</h2>
+    <select ng-model="wishes.event" ng-options="x for x in events">
+      <option>--</option>
+    </select>
+    <input type="text" placeholder="Wishes from" ng-model="wishes.name" ng-class="{'validation
+': validateFlag}" />
+    <input type="text" placeholder="Wishes to" ng-model="wishes.toname" ng-class="{'validation
+': validateFlag}" ng-show="wishes.event == 'birthday'" />
+    <button ng-click="create(wishes)">Create</button>
+  </div>
+</div>
+<div class="container-footer">
+  <div class="creator">
+    <a href="http://www.thelittletechie.com" target="_blank"><i class="fa fa-heart"></i> Vivin </a>
+  </div>
+</div>
