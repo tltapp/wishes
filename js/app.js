@@ -1,6 +1,9 @@
 var app = angular.module('app', ['ui.router', 'firebase']);
 
-app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
+app.config(['$stateProvider', '$urlRouterProvider', '$compileProvider', function($stateProvider, $urlRouterProvider, $compileProvider) {
+
+    $compileProvider.aHrefSanitizationWhitelist(/^\s*(whatsapp):/);
+
     $urlRouterProvider.otherwise('/');
 
     $stateProvider
@@ -31,7 +34,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
         })
 }]);
 
-app.controller('BdayCtrl', ['$scope', '$stateParams', '$window', '$firebaseArray', function($scope, $stateParams, $window, $firebaseArray) {
+app.controller('BdayCtrl', ['$scope', '$stateParams', '$firebaseArray', function($scope, $stateParams, $firebaseArray) {
     // var audio = new Audio('https://tltapp.github.io/wishes/tune/newyear.mp3');
     // audio.play();
 
@@ -43,11 +46,12 @@ app.controller('BdayCtrl', ['$scope', '$stateParams', '$window', '$firebaseArray
         'toname': $stateParams.toname,
         'event': 'Happy Birth Day',
         'wishing': 'I wish you a',
-        'year': '',
         'quotes': 'On your special day, I wish you good luck. I hope this wonderful day will fill up your heart with joy and blessings. Have a fantastic birthday, celebrate the happiness on every day of your life.'
     };
 
-    $scope.url = "whatsapp://send?text=Hey," + $stateParams.toname + ". Happy Birthday to you: https://tltapp.github.io/wishes/%23%21/bday/" + $stateParams.name + "/" + $stateParams.toname;
+    $scope.share = {
+        whatsapp: 'whatsapp://send?text=Hey, %2A' + $stateParams.toname + '%2A. Happy Birthday to you: https://tltapp.github.io/wishes/%23%21/bday/' + $stateParams.name + '/' + $stateParams.toname
+    };
 
     $scope.shareOnWhatsapp = function() {
         fb.$add({
@@ -56,7 +60,6 @@ app.controller('BdayCtrl', ['$scope', '$stateParams', '$window', '$firebaseArray
             name: $stateParams.name,
             toname: $stateParams.toname
         });
-        $window.open($scope.url);
     }
 }]);
 
@@ -110,7 +113,7 @@ app.controller('HomeCtrl', ['$scope', '$state', '$firebaseArray', function($scop
     }
 }]);
 
-app.controller('LoveCtrl', ['$scope', '$stateParams', '$window', '$firebaseArray', function($scope, $stateParams, $window, $firebaseArray) {
+app.controller('LoveCtrl', ['$scope', '$stateParams', '$firebaseArray', function($scope, $stateParams, $firebaseArray) {
     var api = new Firebase("https://tlt-apps.firebaseio.com/wishes/share/");
     var fb = $firebaseArray(api);
 
@@ -120,7 +123,9 @@ app.controller('LoveCtrl', ['$scope', '$stateParams', '$window', '$firebaseArray
         'quotes': 'That’s what it feels like when you touch me. Like millions of tiny universes being born and then dying in the space between your finger and my skin. Sometimes I forget.'
     };
 
-    $scope.url = "whatsapp://send?text=Hey Honey, I Love You. Just felt to tell you.: https://tltapp.github.io/wishes/%23%21/love/" + $stateParams.name + "/" + $stateParams.toname;
+    $scope.share = {
+        whatsapp: 'whatsapp://send?text=Hey Honey, I Love You. Just felt to tell you.: https://tltapp.github.io/wishes/%23%21/love/' + $stateParams.name + '/' + $stateParams.toname
+    };
 
     $scope.shareOnWhatsapp = function() {
         fb.$add({
@@ -129,12 +134,10 @@ app.controller('LoveCtrl', ['$scope', '$stateParams', '$window', '$firebaseArray
             name: $stateParams.name,
             toname: $stateParams.toname
         });
-        console.log($scope.url);
-        $window.open($scope.url);
     }
 }]);
 
-app.controller('NewYearCtrl', ['$scope', '$stateParams', '$window', '$firebaseArray', function($scope, $stateParams, $window, $firebaseArray) {
+app.controller('NewYearCtrl', ['$scope', '$stateParams', '$firebaseArray', function($scope, $stateParams, $firebaseArray) {
     // var audio = new Audio('https://tltapp.github.io/wishes/tune/newyear.mp3');
     // audio.play();
 
@@ -145,11 +148,12 @@ app.controller('NewYearCtrl', ['$scope', '$stateParams', '$window', '$firebaseAr
         'name': $stateParams.name,
         'event': "Happy New Year",
         'wishing': "wishes you and your family a",
-        'year': 2017,
         'quotes': 'Even though life presented to you various obstacles and hurdles, be proud that you managed to overcome all and cross the bridge to another new year. May you continue to be this firm and win over all shortcomings!'
     };
 
-    $scope.url = "whatsapp://send?text=New Year Wishes from " + $stateParams.name + ": https://tltapp.github.io/wishes/%23%21/newyear/" + $stateParams.name;
+    $scope.share = {
+        whatsapp: 'whatsapp://send?text=%2ANew Year Wishes%2A from %2A' + $stateParams.name + '%2A: https://tltapp.github.io/wishes/%23%21/newyear/' + $stateParams.name
+    };
 
     $scope.shareOnWhatsapp = function() {
         fb.$add({
@@ -157,11 +161,10 @@ app.controller('NewYearCtrl', ['$scope', '$stateParams', '$window', '$firebaseAr
             event: "newyear",
             name: $stateParams.name
         });
-        $window.open($scope.url);
-    }
+    };
 }]);
 
-app.controller('PongalCtrl', ['$scope', '$stateParams', '$window', '$firebaseArray', function($scope, $stateParams, $window, $firebaseArray) {
+app.controller('PongalCtrl', ['$scope', '$stateParams', '$firebaseArray', function($scope, $stateParams, $firebaseArray) {
     // var audio = new Audio('https://tltapp.github.io/wishes/tune/pongal.mp3');
     // audio.play();
 
@@ -172,11 +175,12 @@ app.controller('PongalCtrl', ['$scope', '$stateParams', '$window', '$firebaseArr
         'name': $stateParams.name,
         'event': 'Happy Pongal',
         'wishing': 'wishes you and your family a',
-        'year': 2017,
         'quotes': 'As you joyfully celebrate the festival of Pongal and welcome the harvest season, this greeting is being sent your way, to wish you everything, that the occasion is meant to bring. Pongalo Pongal!'
     };
 
-    $scope.url = "whatsapp://send?text=Advanced Pongal Wishes from " + $stateParams.name + ": https://tltapp.github.io/wishes/%23%21/pongal/" + $stateParams.name;
+    $scope.share = {
+        whatsapp: 'whatsapp://send?text=%2AAdvanced Pongal Wishes%2A from %2A' + $stateParams.name + '%2A: https://tltapp.github.io/wishes/%23%21/pongal/' + $stateParams.name
+    };
 
     $scope.shareOnWhatsapp = function() {
         fb.$add({
@@ -184,7 +188,6 @@ app.controller('PongalCtrl', ['$scope', '$stateParams', '$window', '$firebaseArr
             event: "pongal",
             name: $stateParams.name
         });
-        $window.open($scope.url);
     }
 }]);
 

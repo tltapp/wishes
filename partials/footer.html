@@ -1,8 +1,10 @@
 <div class="share-box">
-  <span class="fa-stack fa-lg" ng-click="shareOnWhatsapp()">
+  <a href="{{share.whatsapp}}" ng-click="shareOnWhatsapp()">
+    <span class="fa-stack fa-lg">
 		<i class="fa fa-circle fa-stack-2x whatsapp"></i>
 		<i class="fa fa-whatsapp fa-stack-1x fa-inverse"></i>
 	</span>
+  </a>
 </div>
 <div class="back-btn" ui-sref="home">
   <button>Create</button>
