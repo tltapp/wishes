@@ -155,8 +155,7 @@ app.controller('NewYearCtrl', ['$scope', '$stateParams', '$firebaseArray', '$loc
         whatsapp: 'whatsapp://send?text=%2ANew Year Wishes%2A from %2A' + $stateParams.name + '%2A: https://tltapp.github.io/wishes/%23%21/newyear/' + $stateParams.name
     };
 
-    console.log('//////////' + $location.path());
-    console.log('##############' + $location.href());
+    console.log('########--' + $location.absUrl());
 
     $scope.shareOnWhatsapp = function() {
         fb.$add({
