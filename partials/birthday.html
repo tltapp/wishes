@@ -1,21 +1,21 @@
 <div class="container-header">
   <div ng-include="'partials/header.html'"></div>
 </div>
-<div class="container-body">
+<div class="container-body has-header has-footer">
   <div class="page birthday">
-    <div class="wisher">{{wishes.toname | uppercase}}</div>
+    <div class="wisher">{{wishes.to | uppercase}}</div>
     <div class="wishing">{{wishes.wishing}}</div>
+    <div class="event" ng-if="wishes.adv == 1"><small>Advance</small></div>
     <div class="event">{{wishes.event}}</div>
-    <div class="year">{{wishes.year}}</div>
     <div class="graphics">
-      <div class="candle">
+      <div class="candle" ng-class="{'if-advanced': wishes.adv == 1}">
         <div class="fire"></div>
         <div class="fire"></div>
         <div class="fire"></div>
         <div class="fire"></div>
         <div class="fire"></div>
       </div>
-      <svg id="cake" version="1.1" x="0px" y="0px" width="200px" height="600px" viewBox="0 0 200 600" enable-background="new 0 0 200 600" xml:space="preserve">
+      <svg id="cake" version="1.1" x="0px" y="0px" width="200px" height="600px" viewBox="0 0 200 600" enable-background="new 0 0 200 600" xml:space="preserve" ng-class="{'if-advanced': wishes.adv == 1}">
         <path fill="#a88679" d="M173.667-13.94c-49.298,0-102.782,0-147.334,0c-3.999,0-4-16.002,0-16.002
     c44.697,0,96.586,0,147.334,0C177.667-29.942,177.668-13.94,173.667-13.94z">
           <animate id="bizcocho_3" attributeName="d" calcMode="spline" keySplines="0 0 1 1; 0 0 1 1" begin="relleno_2.end" dur="0.3s" fill="freeze" values="
@@ -165,7 +165,7 @@
       </svg>
     </div>
     <div class="quotes">{{wishes.quotes}}
-      <div>- {{wishes.name}}</div>
+      <div>- <strong>{{wishes.from}}</strong></div>
     </div>
   </div>
 </div>
