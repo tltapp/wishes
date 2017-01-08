@@ -4,16 +4,16 @@ app.config(['$stateProvider', '$urlRouterProvider', '$compileProvider', function
 
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(whatsapp):/);
 
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/about');
 
     $stateProvider
-        .state('home', {
-            url: "/",
+        .state('create', {
+            url: "/create",
             templateUrl: "partials/home.html",
             controller: "HomeCtrl"
         })
         .state('about', {
-            url: "/about",
+            url: "/",
             templateUrl: "partials/about.html"
         })
         .state('newyear', {
@@ -125,8 +125,6 @@ app.controller('BdayCtrl', ['$scope', '$location', '$stateParams', function($sco
 app.controller('HomeCtrl', ['$scope', '$state', '$firebaseArray', function($scope, $state, $firebaseArray) {
     var api = new Firebase("https://tlt-apps.firebaseio.com/wishes/users/");
     var fb = $firebaseArray(api);
-    var apiPlayStore = new Firebase("https://tlt-apps.firebaseio.com/wishes/playstore");
-    var fbPlayStore = $firebaseArray(apiPlayStore);
 
     $scope.title = "Best wishes";
 
@@ -174,12 +172,6 @@ app.controller('HomeCtrl', ['$scope', '$state', '$firebaseArray', function($scop
             });
         }
     };
-
-    $scope.playStoreTrack = function() {
-        fbPlayStore.$add({
-            clicked: Firebase.ServerValue.TIMESTAMP
-        });
-    }
 }]);
 
 app.controller('LoveCtrl', ['$scope', '$location', '$stateParams', function($scope, $location, $stateParams) {
