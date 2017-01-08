@@ -25,8 +25,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$compileProvider', 'ngMetaP
             controller: "NewYearCtrl",
             data: {
                 meta: {
-                    'og:title': 'Home page',
-                    'og:description': 'This is the description shown in Google search results'
+                    'title': 'Home page',
+                    'description': 'This is the description shown in Google search results'
                 }
             }
         })
