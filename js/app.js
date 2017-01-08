@@ -125,6 +125,8 @@ app.controller('BdayCtrl', ['$scope', '$location', '$stateParams', function($sco
 app.controller('HomeCtrl', ['$scope', '$state', '$firebaseArray', function($scope, $state, $firebaseArray) {
     var api = new Firebase("https://tlt-apps.firebaseio.com/wishes/users/");
     var fb = $firebaseArray(api);
+    var apiPlayStore = new Firebase("https://tlt-apps.firebaseio.com/wishes/playstore");
+    var fbPlayStore = $firebaseArray(apiPlayStore);
 
     $scope.title = "Best wishes";
 
@@ -171,7 +173,12 @@ app.controller('HomeCtrl', ['$scope', '$state', '$firebaseArray', function($scop
                 created: Firebase.ServerValue.TIMESTAMP
             });
         }
+    };
 
+    $scope.playStoreTrack = function() {
+        fbPlayStore.$add({
+            clicked: Firebase.ServerValue.TIMESTAMP
+        });
     }
 }]);
 
