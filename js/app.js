@@ -2,7 +2,10 @@ var app = angular.module('app', ['ui.router', 'firebase']);
 
 app.config(['$stateProvider', '$urlRouterProvider', '$compileProvider', function($stateProvider, $urlRouterProvider, $compileProvider) {
 
-    $compileProvider.aHrefSanitizationWhitelist(/^\s*(whatsapp):/);
+    // $compileProvider.aHrefSanitizationWhitelist(/^\s*(whatsapp):/);
+    // $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|chrome-extension):/);
+
+    $compileProvider.aHrefSanitizationWhitelist(/^\s*(whatsapp|https?|ftp|mailto|chrome-extension):/);
 
     $urlRouterProvider.otherwise('/');
 
@@ -100,14 +103,16 @@ bubble();
 }
 
 document.addEventListener("DOMContentLoaded", init1, false);
-app.controller('BdayCtrl', ['$scope', '$location', '$stateParams', function($scope, $location, $stateParams) {
-    $scope.wishes = {
-        'from': $stateParams.from,
-        'to': $stateParams.to,
-        'adv': $stateParams.adv,
-        'event': 'Happy Birth Day',
-        'wishing': 'Wishing you a',
-        'quotes': 'On your special day, I wish you good luck. I hope this wonderful day will fill up your heart with joy and blessings. Have a fantastic birthday, celebrate the happiness on every day of your life.'
+app.controller('BdayCtrl', ['$scope', '$rootScope', '$location', '$stateParams', function($scope, $rootScope, $location, $stateParams) {
+    $rootScope.wishes = {
+        from: $stateParams.from,
+        to: $stateParams.to,
+        adv: $stateParams.adv,
+        event: 'Happy Birth Day',
+        wishing: 'Wishing you a',
+        quotes: 'On your special day, I wish you good luck. I hope this wonderful day will fill up your heart with joy and blessings. Have a fantastic birthday, celebrate the happiness on every day of your life.',
+        metaOgImage: 'http://updatepedia.com/wp-content/uploads/2016/02/22-happy-birthday-greetings-card.preview-1.jpg',
+        metaOgUrl: 'https://tltapp.github.io/wishes/%23%21' + $location.path()
     };
 
     if ($stateParams.adv == 1) {
@@ -117,7 +122,8 @@ app.controller('BdayCtrl', ['$scope', '$location', '$stateParams', function($sco
     }
 
     $scope.share = {
-        whatsapp: 'whatsapp://send?text=Hey, %2A' + $stateParams.to + '%2A. Wish you a ' + $scope.txtAdvance + '%2AHappy Birthday%2A.: https://tltapp.github.io/wishes/%23%21' + $location.path()
+        whatsapp: 'whatsapp://send?text=Hey, %2A' + $stateParams.to + '%2A. Wish you a ' + $scope.txtAdvance + '%2AHappy Birthday%2A.: https://tltapp.github.io/wishes/%23%21' + $location.path(),
+        facebook: 'https://tltapp.github.io/wishes/%23%21' + $location.path()
     };
 
 }]);
@@ -125,8 +131,6 @@ app.controller('BdayCtrl', ['$scope', '$location', '$stateParams', function($sco
 app.controller('HomeCtrl', ['$scope', '$state', '$firebaseArray', function($scope, $state, $firebaseArray) {
     var api = new Firebase("https://tlt-apps.firebaseio.com/wishes/users/");
     var fb = $firebaseArray(api);
-
-    $scope.title = "Best wishes";
 
     $scope.wishes = {
         adv: 0,
@@ -174,26 +178,29 @@ app.controller('HomeCtrl', ['$scope', '$state', '$firebaseArray', function($scop
     };
 }]);
 
-app.controller('LoveCtrl', ['$scope', '$location', '$stateParams', function($scope, $location, $stateParams) {
-    $scope.wishes = {
-        'from': $stateParams.from,
-        'to': $stateParams.to,
-        'quotes': 'That’s what it feels like when you touch me. Like millions of tiny universes being born and then dying in the space between your finger and my skin. Sometimes I forget.'
+app.controller('LoveCtrl', ['$scope', '$rootScope', '$location', '$stateParams', function($scope, $rootScope, $location, $stateParams) {
+    $rootScope.wishes = {
+        from: $stateParams.from,
+        to: $stateParams.to,
+        quotes: 'That’s what it feels like when you touch me. Like millions of tiny universes being born and then dying in the space between your finger and my skin. Sometimes I forget.'
     };
 
     $scope.share = {
-        whatsapp: 'whatsapp://send?text=Hey, %2A' + $stateParams.to + '%2A. I Love Your%2A.: https://tltapp.github.io/wishes/%23%21' + $location.path()
+        whatsapp: 'whatsapp://send?text=Hey, %2A' + $stateParams.to + '%2A. I Love Your%2A.: https://tltapp.github.io/wishes/%23%21' + $location.path(),
+        facebook: 'https://tltapp.github.io/wishes/%23%21' + $location.path()
     };
 }]);
 
-app.controller('NewYearCtrl', ['$scope', '$location', '$stateParams', function($scope, $location, $stateParams) {
-    $scope.wishes = {
-        'from': $stateParams.from,
-        'to': $stateParams.to,
-        'adv': $stateParams.adv,
-        'event': "Happy New Year",
-        'wishing': "wishing you and your family a",
-        'quotes': 'Even though life presented to you various obstacles and hurdles, be proud that you managed to overcome all and cross the bridge to another new year. May you continue to be this firm and win over all shortcomings!'
+app.controller('NewYearCtrl', ['$scope', '$rootScope', '$location', '$stateParams', function($scope, $rootScope, $location, $stateParams) {
+    $rootScope.wishes = {
+        from: $stateParams.from,
+        to: $stateParams.to,
+        adv: $stateParams.adv,
+        event: "Happy New Year",
+        wishing: "wishing you and your family a",
+        quotes: 'Even though life presented to you various obstacles and hurdles, be proud that you managed to overcome all and cross the bridge to another new year. May you continue to be this firm and win over all shortcomings!',
+        metaOgImage: 'http://321happynewyear.com/wp-content/uploads/2016/11/Happy-New-Year-Images-1.jpg',
+        metaOgUrl: 'https://tltapp.github.io/wishes/%23%21' + $location.path()
     };
 
     if ($stateParams.adv == 1) {
@@ -203,18 +210,21 @@ app.controller('NewYearCtrl', ['$scope', '$location', '$stateParams', function($
     }
 
     $scope.share = {
-        whatsapp: 'whatsapp://send?text=Hey, %2A' + $stateParams.to + '%2A. Wish you a ' + $scope.txtAdvance + '%2AHappy New Year%2A.: https://tltapp.github.io/wishes/%23%21' + $location.path()
+        whatsapp: 'whatsapp://send?text=Hey, %2A' + $stateParams.to + '%2A. Wish you a ' + $scope.txtAdvance + '%2AHappy New Year%2A.: https://tltapp.github.io/wishes/%23%21' + $location.path(),
+        facebook: 'https://tltapp.github.io/wishes/%23%21' + $location.path()
     };
 }]);
 
-app.controller('PongalCtrl', ['$scope', '$location', '$stateParams', function($scope, $location, $stateParams) {
-    $scope.wishes = {
-        'from': $stateParams.from,
-        'to': $stateParams.to,
-        'adv': $stateParams.adv,
-        'event': 'Happy Pongal',
-        'wishing': 'wishing you and your family a',
-        'quotes': 'As you joyfully celebrate the festival of Pongal and welcome the harvest season, this greeting is being sent your way, to wish you everything, that the occasion is meant to bring. Pongalo Pongal!'
+app.controller('PongalCtrl', ['$scope', '$rootScope', '$location', '$stateParams', function($scope, $rootScope, $location, $stateParams) {
+    $rootScope.wishes = {
+        from: $stateParams.from,
+        to: $stateParams.to,
+        adv: $stateParams.adv,
+        event: 'Happy Pongal',
+        wishing: 'wishing you and your family a',
+        quotes: 'As you joyfully celebrate the festival of Pongal and welcome the harvest season, this greeting is being sent your way, to wish you everything, that the occasion is meant to bring. Pongalo Pongal!',
+        metaOgImage: 'http://www.techicy.com/wp-content/uploads/2016/01/Happy-Pongal-Wallpapers-3.jpg',
+        metaOgUrl: 'https://tltapp.github.io/wishes/%23%21' + $location.path()
     };
 
     if ($stateParams.adv == 1) {
@@ -224,18 +234,21 @@ app.controller('PongalCtrl', ['$scope', '$location', '$stateParams', function($s
     }
 
     $scope.share = {
-        whatsapp: 'whatsapp://send?text=Hey, %2A' + $stateParams.to + '%2A. Wish you a ' + $scope.txtAdvance + '%2AHappy Pongal%2A.: https://tltapp.github.io/wishes/%23%21' + $location.path()
+        whatsapp: 'whatsapp://send?text=Hey, %2A' + $stateParams.to + '%2A. Wish you a ' + $scope.txtAdvance + '%2AHappy Pongal%2A.: https://tltapp.github.io/wishes/%23%21' + $location.path(),
+        facebook: 'https://tltapp.github.io/wishes/%23%21' + $location.path()
     };
 }]);
 
-app.controller('ValentineCtrl', ['$scope', '$location', '$stateParams', '$firebaseArray', function($scope, $location, $stateParams, $firebaseArray) {
-    $scope.wishes = {
-        'from': $stateParams.from,
-        'to': $stateParams.to,
-        'adv': $stateParams.adv,
-        'event': 'Happy Valentines Day',
-        'wishing': 'wishing you a',
-        'quotes': 'That’s what it feels like when you touch me. Like millions of tiny universes being born and then dying in the space between your finger and my skin. Sometimes I forget.'
+app.controller('ValentineCtrl', ['$scope', '$rootScope', '$location', '$stateParams', function($scope, $rootScope, $location, $stateParams) {
+    $rootScope.wishes = {
+        from: $stateParams.from,
+        to: $stateParams.to,
+        adv: $stateParams.adv,
+        event: 'Happy Valentines Day',
+        wishing: 'wishing you a',
+        quotes: 'That’s what it feels like when you touch me. Like millions of tiny universes being born and then dying in the space between your finger and my skin. Sometimes I forget.',
+        metaOgImage: 'https://valentinesdaywishes.org/wp-content/uploads/2016/01/happy-valentines-day-hd-wallpapers.jpg',
+        metaOgUrl: 'https://tltapp.github.io/wishes/%23%21' + $location.path()
     };
 
     if ($stateParams.adv == 1) {
@@ -245,20 +258,9 @@ app.controller('ValentineCtrl', ['$scope', '$location', '$stateParams', '$fireba
     }
 
     $scope.share = {
-        whatsapp: 'whatsapp://send?text=Hey, %2A' + $stateParams.to + '%2A.Wish you a ' + $scope.txtAdvance + '%2AHappy Valentines Day%2A.: https://tltapp.github.io/wishes/%23%21' + $location.path()
+        whatsapp: 'whatsapp://send?text=Hey, %2A' + $stateParams.to + '%2A.Wish you a ' + $scope.txtAdvance + '%2AHappy Valentines Day%2A.: https://tltapp.github.io/wishes/%23%21' + $location.path(),
+        facebook: 'https://tltapp.github.io/wishes/%23%21' + $location.path()
     };
-
-    var api = new Firebase("https://tlt-apps.firebaseio.com/wishes/share/");
-    var fb = $firebaseArray(api);
-
-    $scope.shareOnWhatsapp = function() {
-        fb.$add({
-            from: $stateParams.from,
-            to: $stateParams.to,
-            share: "whatsapp",
-            event: "Valentines"
-        });
-    }
 }]);
 
 app.directive('restrictField', function() {
