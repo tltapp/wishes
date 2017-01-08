@@ -100,32 +100,6 @@ bubble();
 }
 
 document.addEventListener("DOMContentLoaded", init1, false);
-app.directive('restrictField', function() {
-    return {
-        restrict: 'AE',
-        scope: {
-            restrictField: '='
-        },
-        link: function(scope) {
-            var noNum = /\d/g;
-            var noSpace = /\s/g;
-            var noSpecChar = /\W/g;
-
-            scope.$watch('restrictField', function(newValue, oldValue) {
-                if (newValue != oldValue && noSpace.test(newValue)) {
-                    scope.restrictField = newValue.replace(noSpace, '');
-                }
-                if (newValue != oldValue && noNum.test(newValue)) {
-                    scope.restrictField = newValue.replace(noNum, '');
-                }
-                if (newValue != oldValue && noSpecChar.test(newValue)) {
-                    scope.restrictField = newValue.replace(noSpecChar, '');
-                }
-            });
-        }
-    };
-});
-
 app.controller('BdayCtrl', ['$scope', '$location', '$stateParams', function($scope, $location, $stateParams) {
     $scope.wishes = {
         'from': $stateParams.from,
@@ -286,3 +260,29 @@ app.controller('ValentineCtrl', ['$scope', '$location', '$stateParams', '$fireba
         });
     }
 }]);
+
+app.directive('restrictField', function() {
+    return {
+        restrict: 'AE',
+        scope: {
+            restrictField: '='
+        },
+        link: function(scope) {
+            var noNum = /\d/g;
+            var noSpace = /\s/g;
+            var noSpecChar = /\W/g;
+
+            scope.$watch('restrictField', function(newValue, oldValue) {
+                if (newValue != oldValue && noSpace.test(newValue)) {
+                    scope.restrictField = newValue.replace(noSpace, '');
+                }
+                if (newValue != oldValue && noNum.test(newValue)) {
+                    scope.restrictField = newValue.replace(noNum, '');
+                }
+                if (newValue != oldValue && noSpecChar.test(newValue)) {
+                    scope.restrictField = newValue.replace(noSpecChar, '');
+                }
+            });
+        }
+    };
+});
