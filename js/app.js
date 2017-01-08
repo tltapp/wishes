@@ -1,6 +1,6 @@
-var app = angular.module('app', ['ui.router', 'ngMeta', 'firebase']);
+var app = angular.module('app', ['ui.router', '720kb.socialshare', 'firebase']);
 
-app.config(['$stateProvider', '$urlRouterProvider', '$compileProvider', 'ngMetaProvider', function($stateProvider, $urlRouterProvider, $compileProvider, ngMetaProvider) {
+app.config(['$stateProvider', '$urlRouterProvider', '$compileProvider', function($stateProvider, $urlRouterProvider, $compileProvider) {
 
     // $compileProvider.aHrefSanitizationWhitelist(/^\s*(whatsapp):/);
     // $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|chrome-extension):/);
@@ -22,13 +22,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$compileProvider', 'ngMetaP
         .state('newyear', {
             url: "/newyear/:adv/:from/:to",
             templateUrl: "partials/newyear.html",
-            controller: "NewYearCtrl",
-            data: {
-                meta: {
-                    'title': 'Home page',
-                    'description': 'This is the description shown in Google search results'
-                }
-            }
+            controller: "NewYearCtrl"
         })
         .state('pongal', {
             url: "/pongal/:adv/:from/:to",
@@ -45,9 +39,6 @@ app.config(['$stateProvider', '$urlRouterProvider', '$compileProvider', 'ngMetaP
             templateUrl: "partials/valentine.html",
             controller: "ValentineCtrl"
         })
-}]);
-app.run(['ngMeta', function(ngMeta) {
-    ngMeta.init();
 }]);
 
 function init1() {
