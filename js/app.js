@@ -110,9 +110,7 @@ app.controller('BdayCtrl', ['$scope', '$rootScope', '$location', '$stateParams',
         adv: $stateParams.adv,
         event: 'Happy Birth Day',
         wishing: 'Wishing you a',
-        quotes: 'On your special day, I wish you good luck. I hope this wonderful day will fill up your heart with joy and blessings. Have a fantastic birthday, celebrate the happiness on every day of your life.',
-        metaOgImage: 'http://updatepedia.com/wp-content/uploads/2016/02/22-happy-birthday-greetings-card.preview-1.jpg',
-        metaOgUrl: 'https://tltapp.github.io/wishes/%23%21' + $location.path()
+        quotes: 'On your special day, I wish you good luck. I hope this wonderful day will fill up your heart with joy and blessings. Have a fantastic birthday, celebrate the happiness on every day of your life.'
     };
 
     if ($stateParams.adv == 1) {
@@ -222,9 +220,7 @@ app.controller('PongalCtrl', ['$scope', '$rootScope', '$location', '$stateParams
         adv: $stateParams.adv,
         event: 'Happy Pongal',
         wishing: 'wishing you and your family a',
-        quotes: 'As you joyfully celebrate the festival of Pongal and welcome the harvest season, this greeting is being sent your way, to wish you everything, that the occasion is meant to bring. Pongalo Pongal!',
-        metaOgImage: 'http://www.techicy.com/wp-content/uploads/2016/01/Happy-Pongal-Wallpapers-3.jpg',
-        metaOgUrl: 'https://tltapp.github.io/wishes/%23%21' + $location.path()
+        quotes: 'As you joyfully celebrate the festival of Pongal and welcome the harvest season, this greeting is being sent your way, to wish you everything, that the occasion is meant to bring. Pongalo Pongal!'
     };
 
     if ($stateParams.adv == 1) {
@@ -246,9 +242,7 @@ app.controller('ValentineCtrl', ['$scope', '$rootScope', '$location', '$statePar
         adv: $stateParams.adv,
         event: 'Happy Valentines Day',
         wishing: 'wishing you a',
-        quotes: 'That’s what it feels like when you touch me. Like millions of tiny universes being born and then dying in the space between your finger and my skin. Sometimes I forget.',
-        metaOgImage: 'https://valentinesdaywishes.org/wp-content/uploads/2016/01/happy-valentines-day-hd-wallpapers.jpg',
-        metaOgUrl: 'https://tltapp.github.io/wishes/%23%21' + $location.path()
+        quotes: 'That’s what it feels like when you touch me. Like millions of tiny universes being born and then dying in the space between your finger and my skin. Sometimes I forget.'
     };
 
     if ($stateParams.adv == 1) {
