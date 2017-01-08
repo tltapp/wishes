@@ -100,7 +100,7 @@ bubble();
 }
 
 document.addEventListener("DOMContentLoaded", init1, false);
-app.controller('BdayCtrl', ['$scope', '$location', '$stateParams', '$firebaseArray', function($scope, $location, $stateParams, $firebaseArray) {
+app.controller('BdayCtrl', ['$scope', '$location', '$stateParams', function($scope, $location, $stateParams) {
     $scope.wishes = {
         'from': $stateParams.from,
         'to': $stateParams.to,
@@ -120,17 +120,6 @@ app.controller('BdayCtrl', ['$scope', '$location', '$stateParams', '$firebaseArr
         whatsapp: 'whatsapp://send?text=Hey, %2A' + $stateParams.to + '%2A. Wish you a ' + $scope.txtAdvance + '%2AHappy Birthday%2A.: https://tltapp.github.io/wishes/%23%21' + $location.path()
     };
 
-    var api = new Firebase("https://tlt-apps.firebaseio.com/wishes/share/");
-    var fb = $firebaseArray(api);
-
-    $scope.shareOnWhatsapp = function() {
-        fb.$add({
-            from: $stateParams.from,
-            to: $stateParams.to,
-            share: "whatsapp",
-            event: "birthday"
-        });
-    }
 }]);
 
 app.controller('HomeCtrl', ['$scope', '$state', '$firebaseArray', function($scope, $state, $firebaseArray) {
@@ -186,10 +175,7 @@ app.controller('HomeCtrl', ['$scope', '$state', '$firebaseArray', function($scop
     }
 }]);
 
-app.controller('LoveCtrl', ['$scope', '$location', '$stateParams', '$firebaseArray', function($scope, $location, $stateParams, $firebaseArray) {
-    var api = new Firebase("https://tlt-apps.firebaseio.com/wishes/share/");
-    var fb = $firebaseArray(api);
-
+app.controller('LoveCtrl', ['$scope', '$location', '$stateParams', function($scope, $location, $stateParams) {
     $scope.wishes = {
         'from': $stateParams.from,
         'to': $stateParams.to,
@@ -199,18 +185,9 @@ app.controller('LoveCtrl', ['$scope', '$location', '$stateParams', '$firebaseArr
     $scope.share = {
         whatsapp: 'whatsapp://send?text=Hey, %2A' + $stateParams.to + '%2A. I Love Your%2A.: https://tltapp.github.io/wishes/%23%21' + $location.path()
     };
-
-    $scope.shareOnWhatsapp = function() {
-        fb.$add({
-            from: $stateParams.from,
-            to: $stateParams.to,
-            share: "whatsapp",
-            event: "love"
-        });
-    }
 }]);
 
-app.controller('NewYearCtrl', ['$scope', '$location', '$stateParams', '$firebaseArray', function($scope, $location, $stateParams, $firebaseArray) {
+app.controller('NewYearCtrl', ['$scope', '$location', '$stateParams', function($scope, $location, $stateParams) {
     $scope.wishes = {
         'from': $stateParams.from,
         'to': $stateParams.to,
@@ -229,21 +206,9 @@ app.controller('NewYearCtrl', ['$scope', '$location', '$stateParams', '$firebase
     $scope.share = {
         whatsapp: 'whatsapp://send?text=Hey, %2A' + $stateParams.to + '%2A. Wish you a ' + $scope.txtAdvance + '%2AHappy New Year%2A.: https://tltapp.github.io/wishes/%23%21' + $location.path()
     };
-
-    var api = new Firebase("https://tlt-apps.firebaseio.com/wishes/share/");
-    var fb = $firebaseArray(api);
-
-    $scope.shareOnWhatsapp = function() {
-        fb.$add({
-            from: $stateParams.from,
-            to: $stateParams.to,
-            share: "whatsapp",
-            event: "newyear"
-        });
-    };
 }]);
 
-app.controller('PongalCtrl', ['$scope', '$location', '$stateParams', '$firebaseArray', function($scope, $location, $stateParams, $firebaseArray) {
+app.controller('PongalCtrl', ['$scope', '$location', '$stateParams', function($scope, $location, $stateParams) {
     $scope.wishes = {
         'from': $stateParams.from,
         'to': $stateParams.to,
@@ -262,18 +227,6 @@ app.controller('PongalCtrl', ['$scope', '$location', '$stateParams', '$firebaseA
     $scope.share = {
         whatsapp: 'whatsapp://send?text=Hey, %2A' + $stateParams.to + '%2A. Wish you a ' + $scope.txtAdvance + '%2AHappy Pongal%2A.: https://tltapp.github.io/wishes/%23%21' + $location.path()
     };
-
-    var api = new Firebase("https://tlt-apps.firebaseio.com/wishes/share/");
-    var fb = $firebaseArray(api);
-
-    $scope.shareOnWhatsapp = function() {
-        fb.$add({
-            from: $stateParams.from,
-            to: $stateParams.to,
-            share: "whatsapp",
-            event: "pongal"
-        });
-    }
 }]);
 
 app.controller('ValentineCtrl', ['$scope', '$location', '$stateParams', '$firebaseArray', function($scope, $location, $stateParams, $firebaseArray) {
