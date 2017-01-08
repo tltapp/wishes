@@ -13,13 +13,13 @@
   <meta name="copyright" content="www.thelittletechie.com" />
   <meta name="application-name" content="Best Wishes App" />
   <meta property="og:image" content="{{wishes.metaOgImage}}" />
-  <meta property="og:title" content="Best Wishes {{wishes.to}}" />
-  <meta property="og:description" content="A unique way to send wishes by creating a website link in matter of seconds." />
+  <meta property="og:title" content="{{ngMeta['og:title']}}" />
+  <meta property="og:description" content="{{ngMeta['og:description']}}" />
   <meta property="og:url" content="{{wishes.metaOgUrl}}" />
   <meta name="theme-color" content="#1b2735" />
   <meta name="msapplication-navbutton-color" content="#1b2735" />
   <meta name="apple-mobile-web-app-status-bar-style" content="#1b2735" />
-  <title>Best Wishes {{wishes.to}}</title>
+  <title>Best Wishes</title>
   <link rel="icon" href="img/favicon.ico" />
   <link rel="stylesheet" href="css/app.css" />
   <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css" />
@@ -52,6 +52,7 @@
   <!-- <script src="cordova.js"></script> -->
   <script src="libs/angular/angular.min.js"></script>
   <script src="libs/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ng-meta/1.0.0/ngMeta.min.js"></script>
   <script src="libs/firebase/firebase.js"></script>
   <script src="libs/angularfire/dist/angularfire.min.js"></script>
   <script src="js/app.min.js"></script>
