@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ui.router', '720kb.socialshare', 'updateMeta', 'firebase']);
+var app = angular.module('app', ['ui.router', '720kb.socialshare', 'firebase']);
 
 app.config(['$stateProvider', '$urlRouterProvider', '$compileProvider', function($stateProvider, $urlRouterProvider, $compileProvider) {
 
@@ -108,32 +108,6 @@ bubble();
 }
 
 document.addEventListener("DOMContentLoaded", init1, false);
-app.directive('restrictField', function() {
-    return {
-        restrict: 'AE',
-        scope: {
-            restrictField: '='
-        },
-        link: function(scope) {
-            var noNum = /\d/g;
-            var noSpace = /\s/g;
-            var noSpecChar = /\W/g;
-
-            scope.$watch('restrictField', function(newValue, oldValue) {
-                if (newValue != oldValue && noSpace.test(newValue)) {
-                    scope.restrictField = newValue.replace(noSpace, '');
-                }
-                if (newValue != oldValue && noNum.test(newValue)) {
-                    scope.restrictField = newValue.replace(noNum, '');
-                }
-                if (newValue != oldValue && noSpecChar.test(newValue)) {
-                    scope.restrictField = newValue.replace(noSpecChar, '');
-                }
-            });
-        }
-    };
-});
-
 app.controller('BdayCtrl', ['$scope', '$rootScope', '$location', '$stateParams', function($scope, $rootScope, $location, $stateParams) {
     $rootScope.wishes = {
         from: $stateParams.from,
@@ -219,14 +193,6 @@ app.controller('LoveCtrl', ['$scope', '$rootScope', '$location', '$stateParams',
         whatsapp: 'whatsapp://send?text=https://tltapp.github.io/wishes/%23%21' + $location.path(),
         facebook: 'https://tltapp.github.io/wishes/%23%21' + $location.path()
     };
-
-    $scope.minions = "hi heloo how are youuuuuuuuuuuuuuuu";
-    $scope.minionurl = "https://tltapp.github.io/wishes/#!/love";
-
-    // var m = document.createElement('meta');
-    // m.property = 'og:title';
-    // m.content = 'Love you all';
-    // document.head.appendChild(m);
 }]);
 
 app.controller('NewYearCtrl', ['$scope', '$rootScope', '$location', '$stateParams', function($scope, $rootScope, $location, $stateParams) {
@@ -238,9 +204,6 @@ app.controller('NewYearCtrl', ['$scope', '$rootScope', '$location', '$stateParam
         wishing: "wishing you and your family a",
         quotes: 'Even though life presented to you various obstacles and hurdles, be proud that you managed to overcome all and cross the bridge to another new year. May you continue to be this firm and win over all shortcomings!'
     };
-
-    $scope.minions = "hi heloo how are youuuuuuuuuuuuuuuu";
-    $scope.minionurl = "https://tltapp.github.io/wishes/#!/love";
 
     if ($stateParams.adv == 1) {
         $scope.txtAdvance = "Advance ";
@@ -297,3 +260,29 @@ app.controller('ValentineCtrl', ['$scope', '$rootScope', '$location', '$statePar
         facebook: 'https://tltapp.github.io/wishes/%23%21' + $location.path()
     };
 }]);
+
+app.directive('restrictField', function() {
+    return {
+        restrict: 'AE',
+        scope: {
+            restrictField: '='
+        },
+        link: function(scope) {
+            var noNum = /\d/g;
+            var noSpace = /\s/g;
+            var noSpecChar = /\W/g;
+
+            scope.$watch('restrictField', function(newValue, oldValue) {
+                if (newValue != oldValue && noSpace.test(newValue)) {
+                    scope.restrictField = newValue.replace(noSpace, '');
+                }
+                if (newValue != oldValue && noNum.test(newValue)) {
+                    scope.restrictField = newValue.replace(noNum, '');
+                }
+                if (newValue != oldValue && noSpecChar.test(newValue)) {
+                    scope.restrictField = newValue.replace(noSpecChar, '');
+                }
+            });
+        }
+    };
+});
