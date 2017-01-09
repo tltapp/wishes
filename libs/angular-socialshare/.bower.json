@@ -38,5 +38,6 @@
   },
   "_source": "https://github.com/720kb/angular-socialshare.git",
   "_target": "^2.3.4",
-  "_originalSource": "angularjs-socialshare"
+  "_originalSource": "angularjs-socialshare",
+  "_direct": true
 }
