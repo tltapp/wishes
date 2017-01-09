@@ -1,16 +1,22 @@
+<update-title title="A new title"></update-title>
+<update-meta property="og:title" content="Minions"></update-meta>
+<update-meta property="og:description" content="{{minions}}"></update-meta>
 <div class="container-header">
   <div ng-include="'partials/header.html'"></div>
 </div>
 <div class="container-body has-header has-footer">
   <div class="page love">
-    <div class="event">{{wishes.from}}</div>
+    <!-- <div class="event">{{wishes.from}}</div>
     <div class="graphics event">
       <i class="fa fa-heart"></i>
     </div>
     <div class="event">{{wishes.to}}</div>
     <div class="quotes">{{wishes.quotes}}
       <div>- <strong>{{wishes.from}}</strong></div>
-    </div>
+    </div> -->
+    <a socialshare socialshare-provider="facebook" socialshare-url="https://tltapp.github.io/wishes/#!/love" data-title="I am a title">
+Share with a bigger popup
+</a>
   </div>
 </div>
 <div class="container-footer">
