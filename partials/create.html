@@ -1,0 +1,23 @@
+<div class="container-header">
+  <i class="icon-menu" ui-sref="about"></i>
+</div>
+<div class="container-body">
+  <div class="page create">
+    <img src="./img/logo.png" class="logo animated bounce infinite" />
+    <h1 class="title animated rubberBand infinite">Best Wishes</h1>
+    <form ng-submit="create(wishes)" class="animated slideInUp">
+      <select ng-model="wishes.event">
+        <option value="birthday">Birthday</option>
+        <option value="newyear">New Year</option>
+        <option value="pongal">Pongal</option>
+        <option value="valentine">Valentines Day</option>
+      </select>
+      <div>
+        <input type="checkbox" ng-model="wishes.adv" ng-true-value="1" ng-false-value="0" /> I want to wish in advance
+      </div>
+      <input type="text" placeholder="Wishes from" ng-model="wishes.from" ng-trim="false" maxlength="15" restrict-field="wishes.from" required />
+      <input type="text" placeholder="Wishes to" ng-model="wishes.to" ng-trim="false" maxlength="15" restrict-field="wishes.to" required />
+      <button>Create</button>
+    </form>
+  </div>
+</div>
