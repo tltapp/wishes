@@ -2,22 +2,33 @@
   <i class="icon-menu" ui-sref="about"></i>
 </div>
 <div class="container-body">
-  <div class="page create">
-    <img src="./img/logo.png" class="logo animated bounce infinite" />
-    <h1 class="title animated rubberBand infinite">Best Wishes</h1>
-    <form ng-submit="create(wishes)" class="animated slideInUp">
+  <div class="page create animated slideInUp">
+    <div class="logo-official logo">
+      <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+    <h1 class="title animated rubberBand infinite"><span>Best Wishes</span></h1>
+    <form ng-submit="create(wishes)">
       <select ng-model="wishes.event">
-        <option value="birthday">Birthday</option>
+        <option value="bday">Birthday</option>
         <option value="newyear">New Year</option>
         <option value="pongal">Pongal</option>
         <option value="valentine">Valentines Day</option>
+        <option value="custom">Custom</option>
       </select>
+      <input type="text" placeholder="Event" maxlength="30" ng-model="wishes.customEvent" ng-trim="false" no-spec-char-field="wishes.customEvent" ng-show="wishes.event == 'custom'" />
       <div>
         <input type="checkbox" ng-model="wishes.adv" ng-true-value="1" ng-false-value="0" /> I want to wish in advance
       </div>
       <input type="text" placeholder="Wishes from" ng-model="wishes.from" ng-trim="false" maxlength="15" restrict-field="wishes.from" required />
       <input type="text" placeholder="Wishes to" ng-model="wishes.to" ng-trim="false" maxlength="15" restrict-field="wishes.to" required />
+      <textarea ng-model="wishes.quotes" ng-show="wishes.event == 'custom'" ng-trim="false" no-spec-char-field="wishes.quotes" placeholder="Message/quote" maxlength="300"></textarea>
       <button>Create</button>
+      <p ng-show="wishes.event == 'custom'">Note: Custom creations will be cleared after 7 days from the day of creation.</p>
     </form>
   </div>
 </div>

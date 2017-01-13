@@ -46,9 +46,17 @@
 
 <body>
   <div class="container-wrapper">
-    <div ui-view></div>
+    <div ui-view ng-hide="loaderFlag"></div>
   </div>
   <canvas id="snow"></canvas>
+  <div class="logo-official" ng-show="loaderFlag">
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
   <!-- <script src="cordova.js"></script> -->
   <script src="js/app.min.js"></script>
 </body>

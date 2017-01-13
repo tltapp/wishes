@@ -1,0 +1,17 @@
+<div class="container-header">
+  <div ng-include="'partials/header.html'"></div>
+</div>
+<div class="container-body has-header has-footer">
+  <div class="page custom animated bounceInUp">
+    <div class="wisher">{{wishes.to | uppercase}}</div>
+    <div class="wishing">Wishing you</div>
+    <div class="event" ng-if="wishes.adv == 1"><small>Advance</small></div>
+    <div class="event">{{wishes.event}}</div>
+    <div class="quotes">{{wishes.quotes}}
+      <div>- <strong>{{wishes.from}}</strong></div>
+    </div>
+  </div>
+</div>
+<div class="container-footer">
+  <div ng-include="'partials/footer.html'"></div>
+</div>
